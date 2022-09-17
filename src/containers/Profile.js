@@ -9,8 +9,11 @@ const MainContainer = styled.div`
 	position: relative;
 	min-height: 100vh;
 `;
+
 const Content = styled.div`
-	/* overflow-y: auto; */
+	height: calc(100vh - 3rem);
+	max-height: calc(100vh - 3rem);
+	overflow-y: auto;
 `;
 const UserName = styled.p`
 	color: ${colors.primaryBlack};

@@ -24,6 +24,62 @@
       "likes": 30,
       "location": "New York",
       "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
+    },
+     {
+      "id": 3,
+      "user": "Alex",
+      "image_url": "http://surl.li/dazbl",
+      "likes": 30,
+      "location": "New York",
+      "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
+    },
+     {
+      "id": 4,
+      "user": "Alex",
+      "image_url": "http://surl.li/dazbl",
+      "likes": 30,
+      "location": "New York",
+      "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
+    },
+     {
+      "id": 5,
+      "user": "Alex",
+      "image_url": "http://surl.li/dazbl",
+      "likes": 30,
+      "location": "New York",
+      "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
+    },
+     {
+      "id": 6,
+      "user": "Alex",
+      "image_url": "http://surl.li/dazbl",
+      "likes": 30,
+      "location": "New York",
+      "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
+    },
+     {
+      "id": 7,
+      "user": "Alex",
+      "image_url": "http://surl.li/dazbl",
+      "likes": 30,
+      "location": "New York",
+      "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
+    },
+     {
+      "id": 8,
+      "user": "Alex",
+      "image_url": "http://surl.li/dazbl",
+      "likes": 30,
+      "location": "New York",
+      "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
+    },
+     {
+      "id": 9,
+      "user": "Alex",
+      "image_url": "http://surl.li/dazbl",
+      "likes": 30,
+      "location": "New York",
+      "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
     }
   ],
   "comments": [
