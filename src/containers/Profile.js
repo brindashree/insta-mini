@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import colors from "../themes/colors";
 import profile from "../images/profile.jpg";
@@ -124,104 +124,121 @@ const ImageContainer = styled.div`
 	}
 `;
 function Profile() {
+	const [posts, setPosts] = useState([]);
+	const [user, setUser] = useState({});
+	const [isLoading, setIsLoading] = useState(true);
+
+	const fetchPosts = () => {
+		fetch("http://localhost:8000/posts")
+			.then((res) => res.json())
+			.then((data) => {
+				setPosts(data);
+				setIsLoading(false);
+			});
+	};
+	const fetchUser = () => {
+		fetch("http://localhost:8000/user")
+			.then((res) => res.json())
+			.then((data) => {
+				setUser(data);
+				setIsLoading(false);
+			});
+	};
+	useEffect(() => {
+		fetchPosts();
+		fetchUser();
+	}, []);
 	return (
 		<MainContainer>
 			<Content>
-				<UserName>intercontinental</UserName>
-				<ProfileContainer>
-					<ProfileImageContainer>
-						<div>
-							<img src={profile} alt="profile-img" />
-						</div>
-					</ProfileImageContainer>
-					<ProfileDetails>
-						<FlexDiv>
-							<div>
-								<Count>438</Count>
-								<CountDetail>posts</CountDetail>
-							</div>
-							<div>
-								<Count>133k</Count>
-								<CountDetail>followers</CountDetail>
-							</div>
-							<div>
-								<Count>625</Count>
-								<CountDetail>following</CountDetail>
-							</div>
-						</FlexDiv>
-						<ButtonContainer>
-							<FollowBtn>Follow</FollowBtn>
-							<DropDownIconContainer>
-								<StyledDropIcon />
-							</DropDownIconContainer>
-						</ButtonContainer>
-					</ProfileDetails>
-				</ProfileContainer>
-				<StyledText
-					color={colors.primaryBlack}
-					fontSize="0.875rem"
-					fontWeight={500}
-					margin="0.5rem 0"
-				>
-					InterContinental
-				</StyledText>
-				<StyledText
-					color={colors.textGray}
-					fontSize="0.875rem"
-					fontWeight={500}
-					margin="0.5rem 0"
-				>
-					Travel Company
-				</StyledText>
-				<StyledText
-					color={colors.primaryBlack}
-					fontSize="0.875rem"
-					fontWeight={500}
-					margin="0.5rem 0"
-					width="75%"
-				>
-					The first global luxury hotel brand, pioneering international travel
-					for 70 years. Explore the Stories of the #InterContinentalLife
-				</StyledText>
-				<StyledText
-					color={colors.urlBlue}
-					fontSize="0.875rem"
-					fontWeight={500}
-					margin="0.5rem 0 1.5rem 0"
-				>
-					intercontinental.com/life
-				</StyledText>
-				<Divider />
-				<StyledText
-					color={colors.ctaBlue}
-					fontSize="0.875rem"
-					fontWeight={500}
-					margin="0.5rem 0"
-					textAlign="center"
-				>
-					Call
-				</StyledText>
-				<Divider />
-				<GridContainer>
-					<ImageContainer>
-						<img src={profile} alt="profile-img" />
-					</ImageContainer>
-					<ImageContainer>
-						<img src={profile} alt="profile-img" />
-					</ImageContainer>
-					<ImageContainer>
-						<img src={profile} alt="profile-img" />
-					</ImageContainer>
-					<ImageContainer>
-						<img src={profile} alt="profile-img" />
-					</ImageContainer>
-					<ImageContainer>
-						<img src={profile} alt="profile-img" />
-					</ImageContainer>
-					<ImageContainer>
-						<img src={profile} alt="profile-img" />
-					</ImageContainer>
-				</GridContainer>
+				{isLoading ? (
+					<p>Loading...</p>
+				) : (
+					<>
+						<UserName>{user.name}</UserName>
+						<ProfileContainer>
+							<ProfileImageContainer>
+								<div>
+									<img src={profile} alt="profile-img" />
+								</div>
+							</ProfileImageContainer>
+							<ProfileDetails>
+								<FlexDiv>
+									<div>
+										<Count>438</Count>
+										<CountDetail>posts</CountDetail>
+									</div>
+									<div>
+										<Count>{user.followers}</Count>
+										<CountDetail>followers</CountDetail>
+									</div>
+									<div>
+										<Count>{user.following}</Count>
+										<CountDetail>following</CountDetail>
+									</div>
+								</FlexDiv>
+								<ButtonContainer>
+									<FollowBtn>Follow</FollowBtn>
+									<DropDownIconContainer>
+										<StyledDropIcon />
+									</DropDownIconContainer>
+								</ButtonContainer>
+							</ProfileDetails>
+						</ProfileContainer>
+						<StyledText
+							color={colors.primaryBlack}
+							fontSize="0.875rem"
+							fontWeight={500}
+							margin="0.5rem 0"
+						>
+							{user.name}
+						</StyledText>
+						<StyledText
+							color={colors.textGray}
+							fontSize="0.875rem"
+							fontWeight={500}
+							margin="0.5rem 0"
+						>
+							{user.company}
+						</StyledText>
+						<StyledText
+							color={colors.primaryBlack}
+							fontSize="0.875rem"
+							fontWeight={500}
+							margin="0.5rem 0"
+							width="75%"
+						>
+							{user.bio}
+						</StyledText>
+						<StyledText
+							color={colors.urlBlue}
+							fontSize="0.875rem"
+							fontWeight={500}
+							margin="0.5rem 0 1.5rem 0"
+						>
+							{user.company_url}
+						</StyledText>
+						<Divider />
+						<StyledText
+							color={colors.ctaBlue}
+							fontSize="0.875rem"
+							fontWeight={500}
+							margin="0.5rem 0"
+							textAlign="center"
+						>
+							Call
+						</StyledText>
+						<Divider />
+						<GridContainer>
+							{posts?.length > 0 &&
+								posts.map((post) => (
+									<ImageContainer key={post.id}>
+										<img src={post.image_url} alt="profile-img" />
+									</ImageContainer>
+								))}
+						</GridContainer>
+					</>
+				)}
 			</Content>
 			<BottomNav />
 		</MainContainer>

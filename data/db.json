@@ -1,18 +1,20 @@
 {
-  "user": [
+  "user": 
     {
       "id": 1,
       "name": "InterContinental",
       "company": "Travel Company",
       "bio": "The first global luxury hotel brand, pioneering international travel for 70 years. Explore the Stories of the #InterContinentalLife",
-      "company_url": "intercontinental.com/life"
+      "company_url": "intercontinental.com/life",
+      "followers": 133,
+      "following": 625
     }
-  ],
+  ,
   "posts": [
     {
       "id": 1,
       "user_id": 1,
-      "image_url": "",
+      "image_url": "http://surl.li/dazbl",
       "likes": 23
     }
   ],
