@@ -51,7 +51,7 @@ function BottomNav() {
 			<IconContainer>
 				<HeartOutlined />
 			</IconContainer>
-			<IconContainer>
+			<IconContainer onClick={() => navigate("/profile")}>
 				<img src={profile} alt="profile-img" />
 			</IconContainer>
 		</FlexContainer>

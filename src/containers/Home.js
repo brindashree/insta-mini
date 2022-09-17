@@ -9,6 +9,7 @@ import {
 	SaveOutlined,
 } from "@ant-design/icons";
 import colors from "../themes/colors";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
 	min-height: 100vh;
@@ -61,6 +62,7 @@ const UserActions = styled.div`
 	}
 `;
 function Home() {
+	const navigate = useNavigate();
 	return (
 		<Container>
 			<PostHeader>
@@ -82,7 +84,7 @@ function Home() {
 			<UserActions>
 				<div>
 					<HeartOutlined />
-					<MessageOutlined />
+					<MessageOutlined onClick={() => navigate("/comments")} />
 					<SendOutlined />
 				</div>
 				<div>
