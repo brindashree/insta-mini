@@ -6,6 +6,7 @@ const colors = {
 	ctaBlue: "#0ea5e9",
 	white: "#f8fafc",
 	urlBlue: "#1e40af",
+	red: "#b91c1c",
 };
 
 export default colors;

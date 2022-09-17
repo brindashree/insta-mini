@@ -1,21 +1,29 @@
 {
-  "user": 
-    {
-      "id": 1,
-      "name": "InterContinental",
-      "company": "Travel Company",
-      "bio": "The first global luxury hotel brand, pioneering international travel for 70 years. Explore the Stories of the #InterContinentalLife",
-      "company_url": "intercontinental.com/life",
-      "followers": 133,
-      "following": 625
-    }
-  ,
+  "user": {
+    "id": 1,
+    "name": "InterContinental",
+    "company": "Travel Company",
+    "bio": "The first global luxury hotel brand, pioneering international travel for 70 years. Explore the Stories of the #InterContinentalLife",
+    "company_url": "intercontinental.com/life",
+    "followers": 133,
+    "following": 625
+  },
   "posts": [
     {
       "id": 1,
-      "user_id": 1,
+      "user": "Alex",
       "image_url": "http://surl.li/dazbl",
-      "likes": 23
+      "likes": 28,
+      "location": "New York",
+      "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
+    },
+    {
+      "id": 2,
+      "user": "Alex",
+      "image_url": "http://surl.li/dazbl",
+      "likes": 30,
+      "location": "New York",
+      "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
     }
   ],
   "comments": [
@@ -23,7 +31,7 @@
       "id": 1,
       "user_id": 1,
       "post_id": 1,
-      "likes": 28,
+      "likes": 29,
       "comment": "qwerty",
       "created_at": "2022-09-17T17:40:33.786Z"
     },
@@ -31,7 +39,7 @@
       "comment": "Trial",
       "user_id": 1,
       "post_id": 1,
-      "likes": 2,
+      "likes": 3,
       "created_at": "2022-09-17T17:40:33.786Z",
       "id": 2
     },
@@ -39,7 +47,7 @@
       "comment": "hello",
       "user_id": 1,
       "post_id": 1,
-      "likes": 0,
+      "likes": 1,
       "created_at": "2022-09-17T18:15:14.482Z",
       "id": 3
     }
