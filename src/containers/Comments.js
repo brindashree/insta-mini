@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import colors from "../themes/colors";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
 import { HeartOutlined, SendOutlined, LeftOutlined } from "@ant-design/icons";
 import profile from "../images/profile.jpg";
-import { useNavigate } from "react-router-dom";
+import colors from "../themes/colors";
 
 const MainContainer = styled.div`
 	position: relative;
@@ -29,23 +30,28 @@ const ProfileImageContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-width: 3rem;
+	width: 3rem;
 	height: 3rem;
 	margin: 1rem;
 	img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+		width: 3rem;
+		height: 3rem;
 		border-radius: 50%;
 	}
 `;
 const CommentDetails = styled.div`
 	display: flex;
+	width: 100%;
 	justify-content: space-between;
 	gap: 1rem;
 	align-items: center;
 	padding: 1rem 0;
 	border-bottom: 1px solid ${colors.dividerGray};
+	.anticon {
+		cursor: pointer;
+		font-size: 1rem;
+		color: ${colors.textGray};
+	}
 `;
 
 const StyledText = styled.p`
@@ -117,62 +123,104 @@ const HeaderSection = styled.div`
 	}
 `;
 function Comments() {
+	const [comment, setComment] = useState("");
+	const [comments, setComments] = useState([]);
+
+	const fetchComments = () => {
+		fetch(" http://localhost:8000/comments")
+			.then((res) => res.json())
+			.then((data) => {
+				setComments(data);
+			});
+	};
+
+	useEffect(() => {
+		fetchComments();
+	}, []);
+
+	const handleLikeClick = (comment) => {
+		const updatedComment = { ...comment, likes: comment.likes + 1 };
+		fetch("http://localhost:8000/comments/" + comment.id, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(updatedComment),
+		}).then(() => {
+			fetchComments();
+		});
+	};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const payload = {
+			comment,
+			user_id: 1,
+			post_id: 1,
+			likes: 0,
+			created_at: moment(),
+		};
+
+		fetch("http://localhost:8000/comments", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(payload),
+		}).then(() => {
+			setComment("");
+			fetchComments();
+		});
+	};
 	const navigate = useNavigate();
+	const renderCommentCard = (item, i) => {
+		return (
+			<CommentCard key={i}>
+				<ProfileImageContainer>
+					<img src={profile} alt="profile-img" />
+				</ProfileImageContainer>
+				<CommentDetails>
+					<div>
+						<StyledText fontSize="0.875rem" margin="0 0 0.5rem 0">
+							<strong>Lorem </strong>
+							{item.comment}
+						</StyledText>
+						<StyledSpan>{moment(item.created_at).fromNow()}</StyledSpan>
+						<StyledSpan>
+							{item.likes} {item.likes > 1 ? "likes" : "like"}
+						</StyledSpan>
+						<StyledSpan>Reply</StyledSpan>
+					</div>
+					<div>
+						<StyledLikeIcon onClick={() => handleLikeClick(item)} />
+					</div>
+				</CommentDetails>
+			</CommentCard>
+		);
+	};
 	return (
 		<MainContainer>
 			<HeaderSection>
 				<LeftOutlined onClick={() => navigate("/")} />
 				<Header>Comments</Header>
 			</HeaderSection>
-			<CommentCard>
-				<ProfileImageContainer>
-					<img src={profile} alt="profile-img" />
-				</ProfileImageContainer>
-				<CommentDetails>
-					<div>
-						<StyledText fontSize="0.875rem" margin="0 0 0.5rem 0">
-							<strong>Lorem </strong>ipsum dolor, sit amet consectetur
-							adipisicing elit. Iusto consectetur incidunt molestias ut
-							voluptatum voluptatem numquam nihil! Incidunt corporis ducimus
-							optio veritatis voluptates eius, enim asperiores, soluta sequi
-							deleniti non.
-						</StyledText>
-						<StyledSpan>5w</StyledSpan>
-						<StyledSpan>1 like</StyledSpan>
-						<StyledSpan>Reply</StyledSpan>
-					</div>
-					<div>
-						<StyledLikeIcon />
-					</div>
-				</CommentDetails>
-			</CommentCard>
-			<CommentCard>
-				<ProfileImageContainer>
-					<img src={profile} alt="profile-img" />
-				</ProfileImageContainer>
-				<CommentDetails>
-					<div>
-						<StyledText fontSize="0.875rem" margin="0 0 0.5rem 0">
-							<strong>Lorem </strong>ipsum dolor, sit amet consectetur
-							adipisicing elit. Iusto consectetur incidunt molestias ut
-							voluptatum voluptatem numquam nihil! Incidunt corporis ducimus
-							optio veritatis voluptates eius, enim asperiores, soluta sequi
-							deleniti non.
-						</StyledText>
-						<StyledSpan>5w</StyledSpan>
-						<StyledSpan>1 like</StyledSpan>
-						<StyledSpan>Reply</StyledSpan>
-					</div>
-					<div>
-						<StyledLikeIcon />
-					</div>
-				</CommentDetails>
-			</CommentCard>
-			<PostSection>
-				<StyledSendIcon />
-				<CustomInput type="text" placeholder="Add a comment" autoFocus={true} />
-				<CustomBtn disabled={true}>Post</CustomBtn>
-			</PostSection>
+			{comments.length > 0 &&
+				comments.map((comment, i) => renderCommentCard(comment, i))}
+			<form>
+				<PostSection>
+					<StyledSendIcon />
+
+					<CustomInput
+						type="text"
+						placeholder="Add a comment"
+						autoFocus={true}
+						value={comment}
+						onChange={(e) => setComment(e.target.value)}
+					/>
+					<CustomBtn disabled={comment.length === 0} onClick={handleSubmit}>
+						Post
+					</CustomBtn>
+				</PostSection>
+			</form>
 		</MainContainer>
 	);
 }

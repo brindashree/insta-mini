@@ -1,0 +1,45 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "InterContinental",
+      "company": "Travel Company",
+      "bio": "The first global luxury hotel brand, pioneering international travel for 70 years. Explore the Stories of the #InterContinentalLife",
+      "company_url": "intercontinental.com/life"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "image_url": "",
+      "likes": 23
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "post_id": 1,
+      "likes": 28,
+      "comment": "qwerty",
+      "created_at": "2022-09-17T17:40:33.786Z"
+    },
+    {
+      "comment": "Trial",
+      "user_id": 1,
+      "post_id": 1,
+      "likes": 2,
+      "created_at": "2022-09-17T17:40:33.786Z",
+      "id": 2
+    },
+    {
+      "comment": "hello",
+      "user_id": 1,
+      "post_id": 1,
+      "likes": 0,
+      "created_at": "2022-09-17T18:15:14.482Z",
+      "id": 3
+    }
+  ]
+}

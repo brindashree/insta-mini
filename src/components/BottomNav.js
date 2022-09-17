@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import colors from "../themes/colors";
-import profile from "../images/profile.jpg";
 import {
 	HomeOutlined,
 	SearchOutlined,
 	PlusSquareOutlined,
 	HeartOutlined,
 } from "@ant-design/icons";
+import colors from "../themes/colors";
+import profile from "../images/profile.jpg";
+
 const FlexContainer = styled.div`
 	display: flex;
 	position: absolute;
@@ -23,7 +24,7 @@ const IconContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
+	cursor: pointer;
 	img {
 		width: 1.3rem;
 		height: 1.3rem;
