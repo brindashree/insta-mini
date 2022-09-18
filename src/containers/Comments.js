@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import { HeartOutlined, SendOutlined, LeftOutlined } from "@ant-design/icons";
 import profile from "../images/profile.jpg";
 import colors from "../themes/colors";
+import { addComment, fetchAllComments, updateComment } from "../api";
 
 const MainContainer = styled.div`
 	position: relative;
@@ -125,53 +126,42 @@ const HeaderSection = styled.div`
 function Comments() {
 	const [comment, setComment] = useState("");
 	const [comments, setComments] = useState([]);
+	const { postId } = useParams();
 
-	const fetchComments = () => {
-		fetch(" http://localhost:8000/comments")
-			.then((res) => res.json())
-			.then((data) => {
-				setComments(data);
-			});
+	const fetchComments = async () => {
+		const data = await fetchAllComments();
+		const filteredComments = data.filter(
+			(comment) => comment.post_id === parseInt(postId)
+		);
+		setComments(filteredComments);
 	};
 
 	useEffect(() => {
 		fetchComments();
 	}, []);
 
-	const handleLikeClick = (comment) => {
-		const updatedComment = { ...comment, likes: comment.likes + 1 };
-		fetch("http://localhost:8000/comments/" + comment.id, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(updatedComment),
-		}).then(() => {
-			fetchComments();
-		});
+	const handleLikeClick = async (comment) => {
+		const payload = { ...comment, likes: comment.likes + 1 };
+		await updateComment(comment, payload, fetchComments);
 	};
-	const handleSubmit = (e) => {
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const payload = {
 			comment,
 			user_id: 1,
-			post_id: 1,
+			post_id: parseInt(postId),
 			likes: 0,
 			created_at: moment(),
 		};
-
-		fetch("http://localhost:8000/comments", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(payload),
-		}).then(() => {
+		const res = await addComment(payload);
+		if (res.ok) {
 			setComment("");
 			fetchComments();
-		});
+		}
 	};
 	const navigate = useNavigate();
+
 	const renderCommentCard = (item, i) => {
 		return (
 			<CommentCard key={i}>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { fetchAllPosts, fetchAllComments } from "../api";
 import BottomNav from "../components/BottomNav";
 import Post from "../components/Post";
 
@@ -13,19 +14,27 @@ const Content = styled.div`
 `;
 function Home() {
 	const [posts, setPosts] = useState([]);
+	const [comments, setComments] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
-	const fetchPosts = () => {
-		fetch(" http://localhost:8000/posts")
-			.then((res) => res.json())
-			.then((data) => {
-				setPosts(data);
-				setIsLoading(false);
-			});
+	const fetchPosts = async () => {
+		const data = await fetchAllPosts();
+		if (data.length) {
+			setPosts(data);
+			setIsLoading(false);
+		}
+	};
+	const fetchComments = async () => {
+		const data = await fetchAllComments();
+		if (data.length) {
+			setComments(data);
+		}
 	};
 	useEffect(() => {
 		fetchPosts();
+		fetchComments();
 	}, []);
+
 	return (
 		<Container>
 			<Content>
@@ -34,7 +43,12 @@ function Home() {
 				) : (
 					posts.length > 0 &&
 					posts.map((post) => (
-						<Post key={post.id} singlePost={post} fetchPosts={fetchPosts} />
+						<Post
+							key={post.id}
+							singlePost={post}
+							fetchPosts={fetchPosts}
+							comments={comments}
+						/>
 					))
 				)}
 			</Content>

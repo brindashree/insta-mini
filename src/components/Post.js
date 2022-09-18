@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import profile from "../images/profile.jpg";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {
 	HeartOutlined,
@@ -9,7 +9,9 @@ import {
 	HeartFilled,
 } from "@ant-design/icons";
 import colors from "../themes/colors";
-import { useNavigate } from "react-router-dom";
+import profile from "../images/profile.jpg";
+import { updatePost } from "../api";
+
 const PostHeader = styled.div`
 	display: flex;
 	background-color: ${colors.lightGray};
@@ -57,41 +59,27 @@ const UserActions = styled.div`
 	}
 `;
 const StyledHeartFilledIcon = styled(HeartFilled)`
-	.anticon {
-		font-size: 1.4rem;
-		margin: 0.5rem;
-		color: ${colors.red};
-	}
+	font-size: 1.4rem;
+	margin: 0.5rem;
+	color: ${colors.red};
 `;
 function Post({ singlePost, fetchPosts }) {
 	const navigate = useNavigate();
+
 	const [liked, setLiked] = useState(false);
-	const handleUnLikePost = (post) => {
+
+	const handleUnLikePost = async (post) => {
 		setLiked(false);
-		const updatedPost = { ...post, likes: post.likes - 1 };
-		fetch("http://localhost:8000/posts/" + post.id, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(updatedPost),
-		}).then(() => {
-			fetchPosts();
-		});
+		const payload = { ...post, likes: post.likes - 1 };
+		await updatePost(post, payload, fetchPosts);
 	};
-	const handleLikePost = (post) => {
+
+	const handleLikePost = async (post) => {
 		setLiked(true);
-		const updatedPost = { ...post, likes: post.likes + 1 };
-		fetch("http://localhost:8000/posts/" + post.id, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(updatedPost),
-		}).then(() => {
-			fetchPosts();
-		});
+		const payload = { ...post, likes: post.likes + 1 };
+		await updatePost(post, payload, fetchPosts);
 	};
+
 	return (
 		<>
 			<PostHeader>
@@ -119,7 +107,9 @@ function Post({ singlePost, fetchPosts }) {
 					) : (
 						<HeartOutlined onClick={() => handleLikePost(singlePost)} />
 					)}
-					<MessageOutlined onClick={() => navigate("/comments")} />
+					<MessageOutlined
+						onClick={() => navigate(`/comments/${singlePost.id}`)}
+					/>
 					<SendOutlined />
 				</div>
 				<div>

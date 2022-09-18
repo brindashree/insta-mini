@@ -4,6 +4,7 @@ import colors from "../themes/colors";
 import profile from "../images/profile.jpg";
 import { CaretDownOutlined } from "@ant-design/icons";
 import BottomNav from "../components/BottomNav";
+import { fetchAllPosts } from "../api";
 
 const MainContainer = styled.div`
 	position: relative;
@@ -126,31 +127,23 @@ const ImageContainer = styled.div`
 		height: 100%;
 	}
 `;
-function Profile() {
+
+function Profile({ user }) {
 	const [posts, setPosts] = useState([]);
-	const [user, setUser] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
 
-	const fetchPosts = () => {
-		fetch("http://localhost:8000/posts")
-			.then((res) => res.json())
-			.then((data) => {
-				setPosts(data);
-				setIsLoading(false);
-			});
+	const fetchPosts = async () => {
+		const data = await fetchAllPosts();
+		if (data.length) {
+			setPosts(data);
+			setIsLoading(false);
+		}
 	};
-	const fetchUser = () => {
-		fetch("http://localhost:8000/user")
-			.then((res) => res.json())
-			.then((data) => {
-				setUser(data);
-				setIsLoading(false);
-			});
-	};
+
 	useEffect(() => {
 		fetchPosts();
-		fetchUser();
 	}, []);
+
 	return (
 		<MainContainer>
 			<Content>
