@@ -7,6 +7,7 @@ const colors = {
 	white: "#f8fafc",
 	urlBlue: "#1e40af",
 	red: "#ef4444",
+	primaryGray: "#475569",
 };
 
 export default colors;

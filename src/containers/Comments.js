@@ -149,7 +149,7 @@ function Comments() {
 		e.preventDefault();
 		const payload = {
 			comment,
-			user_id: 1,
+			user_name: "Alex",
 			post_id: parseInt(postId),
 			likes: 0,
 			created_at: moment(),

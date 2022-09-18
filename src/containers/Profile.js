@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import colors from "../themes/colors";
 import profile from "../images/profile.jpg";
-import { CaretDownOutlined } from "@ant-design/icons";
+import {
+	CaretDownOutlined,
+	HolderOutlined,
+	UnorderedListOutlined,
+	UserOutlined,
+} from "@ant-design/icons";
 import BottomNav from "../components/BottomNav";
 import { fetchAllPosts } from "../api";
 
@@ -55,6 +60,11 @@ const FlexDiv = styled.div`
 	div {
 		flex: 1;
 		text-align: center;
+		.anticon {
+			color: ${colors.textGray};
+			font-size: 1.3rem;
+			margin: 0.5rem;
+		}
 	}
 `;
 const Count = styled.p`
@@ -224,6 +234,18 @@ function Profile({ user }) {
 						>
 							Call
 						</StyledText>
+						<Divider />
+						<FlexDiv>
+							<div>
+								<HolderOutlined />
+							</div>
+							<div>
+								<UnorderedListOutlined />
+							</div>
+							<div>
+								<UserOutlined />
+							</div>
+						</FlexDiv>
 						<Divider />
 						<GridContainer>
 							{posts?.length > 0 &&

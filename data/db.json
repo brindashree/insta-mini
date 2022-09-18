@@ -85,7 +85,7 @@
   "comments": [
     {
       "id": 1,
-      "user_id": 1,
+      "user_name": "Charlie",
       "post_id": 1,
       "likes": 29,
       "comment": "qwerty",
@@ -93,7 +93,7 @@
     },
     {
       "comment": "Trial",
-      "user_id": 1,
+      "user_name": "Jack",
       "post_id": 1,
       "likes": 3,
       "created_at": "2022-09-17T17:40:33.786Z",
@@ -101,7 +101,7 @@
     },
     {
       "comment": "hello",
-      "user_id": 1,
+      "user_name": "Adam",
       "post_id": 1,
       "likes": 2,
       "created_at": "2022-09-17T18:15:14.482Z",
@@ -109,7 +109,7 @@
     },
     {
       "comment": "Comment for post 2",
-      "user_id": 1,
+      "user_name": "Jane",
       "post_id": 2,
       "likes": 5,
       "created_at": "2022-09-18T06:40:23.378Z",
@@ -117,23 +117,15 @@
     },
     {
       "comment": "post 2",
-      "user_id": 1,
+      "user_name": "Cleo",
       "post_id": 2,
       "likes": 0,
       "created_at": "2022-09-18T07:32:36.621Z",
       "id": 5
     },
     {
-      "comment": "post 2",
-      "user_id": 1,
-      "post_id": 2,
-      "likes": 0,
-      "created_at": "2022-09-18T07:32:36.621Z",
-      "id": 6
-    },
-    {
-      "comment": "2",
-      "user_id": 1,
+      "comment": "Nice",
+      "user_name": "Alex",
       "post_id": 2,
       "likes": 0,
       "created_at": "2022-09-18T07:38:33.216Z",
@@ -141,11 +133,19 @@
     },
     {
       "comment": "hello",
-      "user_id": 1,
+      "user_name": "Alex",
       "post_id": 2,
       "likes": 0,
       "created_at": "2022-09-18T07:38:42.859Z",
       "id": 8
+    },
+    {
+      "comment": "Awesome!",
+      "user_name": "Alex",
+      "post_id": 1,
+      "likes": 0,
+      "created_at": "2022-09-18T09:03:38.663Z",
+      "id": 9
     }
   ]
 }

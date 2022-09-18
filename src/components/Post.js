@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -63,10 +63,30 @@ const StyledHeartFilledIcon = styled(HeartFilled)`
 	margin: 0.5rem;
 	color: ${colors.red};
 `;
-function Post({ singlePost, fetchPosts }) {
+const StyledComment = styled.p`
+	font-size: 0.875rem;
+	color: ${colors.primaryGray};
+	margin: 0.5rem;
+	span {
+		margin-right: 0.5rem;
+	}
+`;
+function Post({ singlePost, fetchPosts, comments }) {
 	const navigate = useNavigate();
 
 	const [liked, setLiked] = useState(false);
+	const [relatedComments, setRelatedComments] = useState([]);
+
+	const fetchRelatedComments = () => {
+		const filteredComments = comments
+			.reverse()
+			.filter((comment) => comment.post_id === parseInt(singlePost.id));
+		setRelatedComments(filteredComments);
+	};
+
+	useEffect(() => {
+		fetchRelatedComments();
+	}, [comments]);
 
 	const handleUnLikePost = async (post) => {
 		setLiked(false);
@@ -123,6 +143,15 @@ function Post({ singlePost, fetchPosts }) {
 			<StyledText fontSize="0.875rem" margin="0 0 0.5rem 0.5rem">
 				<strong>{singlePost.user} </strong> {singlePost?.caption}
 			</StyledText>
+			{relatedComments &&
+				relatedComments.slice(0, 2).map((item) => (
+					<StyledComment key={item.id}>
+						<span>
+							<strong>{item.user_name}</strong>
+						</span>
+						{item.comment}
+					</StyledComment>
+				))}
 		</>
 	);
 }
