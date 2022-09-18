@@ -173,7 +173,7 @@ function Profile({ user }) {
 							<ProfileDetails>
 								<FlexDiv>
 									<div>
-										<Count>438</Count>
+										<Count>{posts?.length}</Count>
 										<CountDetail>posts</CountDetail>
 									</div>
 									<div>

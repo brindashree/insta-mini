@@ -13,7 +13,7 @@
       "id": 1,
       "user": "Alex",
       "image_url": "http://surl.li/dazbl",
-      "likes": 33,
+      "likes": 34,
       "location": "New York",
       "caption": "Photo of the Day: That feeling when you kick off the hiking boots + relax above it all"
     },
@@ -21,13 +21,13 @@
       "id": 2,
       "user": "Alex",
       "image_url": "https://rb.gy/p3ttfk",
-      "likes": 30,
+      "likes": 31,
       "location": "Great Smoky Mountains ",
       "caption": "Scenic Sunset"
     },
     {
       "user": "Alex",
-      "likes": 0,
+      "likes": 1,
       "image_url": "https://bit.ly/3ShFdXn",
       "caption": "Life's at its Best",
       "location": "Seatle",
@@ -35,7 +35,7 @@
     },
     {
       "user": "Alex",
-      "likes": 1,
+      "likes": 2,
       "image_url": "https://bit.ly/3ROJPUW",
       "caption": "Exploring city on Skates!!",
       "location": "California",
@@ -43,7 +43,7 @@
     },
     {
       "user": "Alex",
-      "likes": 0,
+      "likes": 1,
       "image_url": "https://rb.gy/ou2txa",
       "caption": "Lights !!",
       "location": "Paris",
