@@ -171,7 +171,7 @@ function Comments() {
 				<CommentDetails>
 					<div>
 						<StyledText fontSize="0.875rem" margin="0 0 0.5rem 0">
-							<strong>Lorem </strong>
+							<strong>{item.user_name} </strong>
 							{item.comment}
 						</StyledText>
 						<StyledSpan>{moment(item.created_at).fromNow()}</StyledSpan>
