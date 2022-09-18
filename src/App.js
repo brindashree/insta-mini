@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getUser } from "./api";
-import Comments from "./containers/Comments";
-import CreatePost from "./containers/CreatePost";
-import Home from "./containers/Home";
-import Profile from "./containers/Profile";
+import Comments from "./pages/Comments";
+import CreatePost from "./pages/CreatePost";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 function App() {
 	const [user, setUser] = useState({});

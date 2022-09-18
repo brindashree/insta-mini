@@ -92,13 +92,19 @@ function Post({ singlePost, fetchPosts, comments }) {
 	const handleUnLikePost = async (post) => {
 		setLiked(false);
 		const payload = { ...post, likes: post.likes - 1 };
-		await updatePost(post, payload, fetchPosts);
+		const res = await updatePost(post, payload);
+		if (res.ok) {
+			fetchPosts();
+		}
 	};
 
 	const handleLikePost = async (post) => {
 		setLiked(true);
 		const payload = { ...post, likes: post.likes + 1 };
-		await updatePost(post, payload, fetchPosts);
+		const res = await updatePost(post, payload);
+		if (res.ok) {
+			fetchPosts();
+		}
 	};
 
 	return (

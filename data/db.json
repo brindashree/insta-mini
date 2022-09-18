@@ -1,9 +1,9 @@
 {
   "user": {
     "id": 1,
-    "name": "InterContinental",
-    "company": "Travel Company",
-    "bio": "The first global luxury hotel brand, pioneering international travel for 70 years. Explore the Stories of the #InterContinentalLife",
+    "name": "Alex",
+    "company": "Globetrotter",
+    "bio": "I click candid, urban street photography all over the world.",
     "company_url": "intercontinental.com/life",
     "followers": 133,
     "following": 625
@@ -40,33 +40,17 @@
       "caption": "Exploring city on Skates!!",
       "location": "California",
       "id": 4
+    },
+    {
+      "user": "Alex",
+      "likes": 0,
+      "image_url": "https://rb.gy/ou2txa",
+      "caption": "Lights !!",
+      "location": "Paris",
+      "id": 5
     }
   ],
   "comments": [
-    {
-      "id": 1,
-      "user_name": "Charlie",
-      "post_id": 1,
-      "likes": 30,
-      "comment": "qwerty",
-      "created_at": "2022-09-17T17:40:33.786Z"
-    },
-    {
-      "comment": "Trial",
-      "user_name": "Jack",
-      "post_id": 1,
-      "likes": 4,
-      "created_at": "2022-09-17T17:40:33.786Z",
-      "id": 2
-    },
-    {
-      "comment": "hello",
-      "user_name": "Adam",
-      "post_id": 1,
-      "likes": 3,
-      "created_at": "2022-09-17T18:15:14.482Z",
-      "id": 3
-    },
     {
       "comment": "Comment for post 2",
       "user_name": "Jane",
@@ -100,20 +84,36 @@
       "id": 8
     },
     {
-      "comment": "Awesome!",
+      "id": 9,
       "user_name": "Alex",
+      "comment": "Awesome!",
       "post_id": 1,
-      "likes": 6,
       "created_at": "2022-09-18T09:03:38.663Z",
-      "id": 9
+      "likes": 7
     },
     {
-      "comment": "Crazy !!",
+      "id": 10,
+      "user_name": "Alex",
+      "comment": "Crazzy!!",
+      "post_id": 4,
+      "created_at": "2022-09-18T12:40:48.204Z",
+      "likes": 2
+    },
+    {
+      "comment": "Beautiful !!",
+      "user_name": "Alex",
+      "post_id": 3,
+      "likes": 0,
+      "created_at": "2022-09-18T12:50:25.392Z",
+      "id": 11
+    },
+    {
+      "comment": "posted!!",
       "user_name": "Alex",
       "post_id": 4,
       "likes": 0,
-      "created_at": "2022-09-18T10:10:16.096Z",
-      "id": 10
+      "created_at": "2022-09-18T13:04:04.191Z",
+      "id": 12
     }
   ]
 }
