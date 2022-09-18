@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import colors from "../themes/colors";
-import profile from "../images/profile.jpg";
+import { useNavigate } from "react-router-dom";
 import {
 	CaretDownOutlined,
 	HolderOutlined,
@@ -9,6 +8,8 @@ import {
 	UserOutlined,
 } from "@ant-design/icons";
 import BottomNav from "../components/BottomNav";
+import colors from "../themes/colors";
+import profile from "../images/profile.jpg";
 import { fetchAllPosts } from "../api";
 
 const MainContainer = styled.div`
@@ -139,13 +140,14 @@ const ImageContainer = styled.div`
 `;
 
 function Profile({ user }) {
+	const navigate = useNavigate();
 	const [posts, setPosts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	const fetchPosts = async () => {
 		const data = await fetchAllPosts();
 		if (data.length) {
-			setPosts(data);
+			setPosts(data.reverse());
 			setIsLoading(false);
 		}
 	};
@@ -250,7 +252,7 @@ function Profile({ user }) {
 						<GridContainer>
 							{posts?.length > 0 &&
 								posts.map((post) => (
-									<ImageContainer key={post.id}>
+									<ImageContainer key={post.id} onClick={() => navigate("/")}>
 										<img src={post.image_url} alt="profile-img" />
 									</ImageContainer>
 								))}

@@ -20,7 +20,7 @@ function Home() {
 	const fetchPosts = async () => {
 		const data = await fetchAllPosts();
 		if (data.length) {
-			setPosts(data);
+			setPosts(data.reverse());
 			setIsLoading(false);
 		}
 	};

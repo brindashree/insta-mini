@@ -31,6 +31,16 @@ export const addComment = async (payload) => {
 	}).catch((err) => console.error(err));
 	return await result;
 };
+export const addPost = async (payload) => {
+	const result = await fetch(`${API_URL}/posts`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(payload),
+	}).catch((err) => console.error(err));
+	return await result;
+};
 
 // PUT REQUESTS
 export const updateComment = async (comment, payload, callback) => {

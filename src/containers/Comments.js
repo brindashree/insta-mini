@@ -187,6 +187,7 @@ function Comments() {
 			</CommentCard>
 		);
 	};
+
 	return (
 		<MainContainer>
 			<HeaderSection>

@@ -47,7 +47,7 @@ function BottomNav() {
 				<SearchOutlined />
 			</IconContainer>
 			<IconContainer>
-				<PlusSquareOutlined />
+				<PlusSquareOutlined onClick={() => navigate("/create")} />
 			</IconContainer>
 			<IconContainer>
 				<HeartOutlined />
